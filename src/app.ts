@@ -2,7 +2,7 @@ import express, { type Request, type Response } from "express";
 
 export const createApp = () => {
   const app = express();
-
+  console.log("I am the best!!!");
   // Global middleware (runs on every request)
   app.use(express.json());
 
