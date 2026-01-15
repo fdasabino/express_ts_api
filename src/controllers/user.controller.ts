@@ -1,4 +1,6 @@
 import type { Request, Response } from "express";
+import { createUserService } from "../services/user.service";
+
 const users = [
   { id: 1, name: "Dexter Morgan", job: "Forensics Analist" },
   {
@@ -12,6 +14,7 @@ interface createUserType {
   id: number;
   name: string;
   job: string;
+  email: string;
 }
 
 export const getUsers = (req: Request, res: Response) => {
@@ -25,15 +28,19 @@ export const getUserById = (req: Request, res: Response) => {
   res.status(200).send(userId);
 };
 
-export const createUser = (req: Request<{}, {}, createUserType>, res: Response) => {
-  console.log(req.body);
-  const { name, job, id } = req.body;
+export const createUser = async (req: Request<{}, {}, createUserType>, res: Response) => {
+  try {
+    console.log("Request", req);
+    const { name, job, email } = req.body;
+    const newUser = await createUserService(name, job, email);
 
-  const user = {
-    name,
-    job,
-    id,
-  };
+    console.log(newUser);
 
-  res.status(201).json({ status: "User Created sucesfully", user });
+    res.status(201).json({ status: "User Created sucesfully", user: newUser });
+  } catch (error: any) {
+    if (error.message === "User already exists...") {
+      res.status(403).json({ message: error.message });
+    }
+    res.status(500).json({ message: "An error has occured", error });
+  }
 };
