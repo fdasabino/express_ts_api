@@ -3,8 +3,7 @@ import userRoutes from "./routes/user.routes";
 
 export const createApp = () => {
   const app = express();
-  console.log("I am the best!!!");
-  // Global middleware (runs on every request)
+  // * middlewares
   app.use(express.json());
 
   // * routes
