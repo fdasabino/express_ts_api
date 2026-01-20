@@ -1,46 +1,55 @@
 import type { Request, Response } from "express";
-import { createUserService } from "../services/user.service";
-
-const users = [
-  { id: 1, name: "Dexter Morgan", job: "Forensics Analist" },
-  {
-    id: 2,
-    name: "Debra Morgan",
-    job: "Capitain",
-  },
-];
+import {
+  createUserService,
+  getAllUsersService,
+  getUserByIdService,
+  updateUserService,
+} from "../services/user.service";
 
 interface createUserType {
-  id: number;
   name: string;
-  job: string;
+  age: number;
   email: string;
 }
 
-export const getUsers = (req: Request, res: Response) => {
-  res.status(200).json(users);
+export const getUsers = async (req: Request, res: Response) => {
+  try {
+    const users = await getAllUsersService();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).send({ message: (error as Error).message });
+  }
 };
 
-export const getUserById = (req: Request, res: Response) => {
-  console.log(req.params.id);
-  const userId = req.params.id;
-
-  res.status(200).send(userId);
+export const getUserById = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id as string;
+    const user = await getUserByIdService(id);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).send({ message: (error as Error).message });
+  }
 };
 
 export const createUser = async (req: Request<{}, {}, createUserType>, res: Response) => {
   try {
-    console.log("Request", req);
-    const { name, job, email } = req.body;
-    const newUser = await createUserService(name, job, email);
-
-    console.log(newUser);
-
+    const { name, age, email } = req.body;
+    const newUser = await createUserService(name, age, email);
     res.status(201).json({ status: "User Created sucesfully", user: newUser });
-  } catch (error: any) {
-    if (error.message === "User already exists...") {
-      res.status(403).json({ message: error.message });
-    }
-    res.status(500).json({ message: "An error has occured", error });
+  } catch (error) {
+    res.status(500).send({ message: (error as Error).message });
+  }
+};
+
+export const updateUserById = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id as string;
+    const updateData = req.body;
+    // Implementation for updating user goes here
+    const updateUser = await updateUserService(id, updateData);
+
+    res.status(200).json({ status: `User with id ${id} updated successfully`, user: updateUser });
+  } catch (error) {
+    res.status(500).send({ message: (error as Error).message });
   }
 };

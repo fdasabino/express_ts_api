@@ -1,41 +1,44 @@
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  job: string;
-}
+import { UserDocument, UserModel } from "../models/user.model";
 
-const users: User[] = [
-  { id: 1, name: "Dexter Morgan", job: "Forensics Analist", email: "dexthekiller@me.com" },
-  {
-    id: 2,
-    name: "Debra Morgan",
-    job: "Captain",
-    email: "debrathecop@me.com",
-  },
-];
+export const getAllUsersService = async () => {
+  const users = await UserModel.find();
 
-export const createUserService = async (
-  name: string,
-  job: string,
-  email: string,
-): Promise<User> => {
-  return new Promise((resolve, reject) => {
-    const existingUser = users.find((user) => user.email === email);
+  if (users.length === 0) throw new Error("No users found...");
 
-    if (existingUser) {
-      reject(new Error("User already exists..."));
-      return;
-    }
+  return users;
+};
 
-    const newUser: User = {
-      id: users.length + 1,
-      name,
-      job,
-      email,
-    };
+export const getUserByIdService = async (id: string) => {
+  const user = await UserModel.findById(id);
 
-    users.push(newUser);
-    resolve(newUser);
-  });
+  if (!user) throw new Error("User not found...");
+
+  return user;
+};
+
+export const createUserService = async (name: string, age: number, email: string) => {
+  const existingUser = await UserModel.findOne({ email });
+
+  if (existingUser) throw new Error("User already exists...");
+
+  const newUser: UserDocument = {
+    name,
+    age,
+    email,
+  };
+
+  await UserModel.create(newUser);
+  return newUser;
+};
+
+export const updateUserService = async (id: string, updateData: Partial<UserDocument>) => {
+  const existingUser = await UserModel.findById(id);
+
+  if (!existingUser) throw new Error("User not found...");
+
+  const updatedUser = await UserModel.findByIdAndUpdate(id, updateData, { new: true });
+
+  if (!updatedUser) throw new Error("User not found...");
+
+  return updatedUser;
 };
