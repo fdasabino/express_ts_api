@@ -36,7 +36,10 @@ export const updateUserService = async (id: string, updateData: Partial<UserDocu
 
   if (!existingUser) throw new Error("User not found...");
 
-  const updatedUser = await UserModel.findByIdAndUpdate(id, updateData, { new: true });
+  const updatedUser = await UserModel.findByIdAndUpdate(id, updateData, {
+    new: true,
+    runValidators: true,
+  });
 
   if (!updatedUser) throw new Error("User not found...");
 
