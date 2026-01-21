@@ -1,4 +1,5 @@
 import express, { type Request, type Response } from "express";
+import { errorHandler } from "./middleware/error.middleware";
 import userRoutes from "./routes/user.routes";
 
 export const createApp = () => {
@@ -8,6 +9,9 @@ export const createApp = () => {
 
   // * routes
   app.use("/api/users", userRoutes);
+
+  // * error handling middleware
+  app.use(errorHandler); // new line
 
   // * Health check (quick way to verify server is alive)
   app.get("/health", (req: Request, res: Response) => {
