@@ -1,16 +1,11 @@
 import type { NextFunction, Request, Response } from "express";
+import { CreateUser } from "../models/user.model";
 import {
   createUserService,
   getAllUsersService,
   getUserByIdService,
   updateUserService,
 } from "../services/user.service";
-
-interface createUserType {
-  name: string;
-  age: number;
-  email: string;
-}
 
 export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -32,7 +27,7 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
 };
 
 export const createUser = async (
-  req: Request<{}, {}, createUserType>,
+  req: Request<{}, {}, CreateUser>,
   res: Response,
   next: NextFunction,
 ) => {
