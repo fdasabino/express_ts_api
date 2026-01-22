@@ -23,8 +23,7 @@ export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   if (err instanceof ZodError) {
     statusCode = 400;
     message = "Validation Error";
-
-    // Keep `details` for compatibility; make it the human-friendly list.
+    // make it the human-friendly list.
     details = err.issues.map((issue) => ({
       path: issue.path.join("."),
       message: issue.message,

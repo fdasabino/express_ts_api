@@ -15,6 +15,7 @@ export const createApp = () => {
 
   // * Health check (quick way to verify server is alive)
   app.get("/health", (req: Request, res: Response) => {
+    void req;
     res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
   });
 

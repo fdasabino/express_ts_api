@@ -15,7 +15,7 @@ export const createUserValidation = z.object({
   }),
 });
 
-export type CreateUser = z.infer<typeof createUserValidation>["body"];
+export type CreateUserTypeZ = z.infer<typeof createUserValidation>["body"];
 
 const userSchema = new mongoose.Schema(
   {

@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import { CreateUser } from "../models/user.model";
+import { CreateUserTypeZ } from "../models/user.model";
 import {
   createUserService,
   getAllUsersService,
@@ -27,7 +27,7 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
 };
 
 export const createUser = async (
-  req: Request<{}, {}, CreateUser>,
+  req: Request<{}, {}, CreateUserTypeZ>,
   res: Response,
   next: NextFunction,
 ) => {
