@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
-import { AnyZodObject } from "zod/v3";
+import { z } from "zod";
 
 // src/middleware/validate.ts
 export const validate =
-  (schema: AnyZodObject) => async (req: Request, res: Response, next: NextFunction) => {
+  (schema: z.ZodTypeAny) => async (req: Request, res: Response, next: NextFunction) => {
     try {
       // Throws error if invalid
       await schema.parseAsync({
@@ -13,6 +13,6 @@ export const validate =
       });
       next(); // Valid! Continue.
     } catch (error) {
-      return res.status(400).json(error);
+      next(error);
     }
   };
