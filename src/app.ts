@@ -1,5 +1,6 @@
 import express, { type Request, type Response } from "express";
 import { errorHandler } from "./middleware/error.middleware";
+import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
 
 export const createApp = () => {
@@ -9,6 +10,7 @@ export const createApp = () => {
 
   // * routes
   app.use("/api/users", userRoutes);
+  app.use("/api/auth", authRoutes);
 
   // * error handling middleware
   app.use(errorHandler); // new line
