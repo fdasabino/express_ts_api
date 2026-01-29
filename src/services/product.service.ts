@@ -39,6 +39,9 @@ export const deleteProductService = async (id: string) => {
   const existingProduct = await ProductModel.findById(id);
   if (!existingProduct) throw new AppError("Product not found...", 404);
 
-  await ProductModel.findByIdAndDelete(id);
-  return;
+  const deletedProduct = await ProductModel.findByIdAndDelete(id, {
+    new: true,
+    runValidators: true,
+  });
+  return deletedProduct;
 };
