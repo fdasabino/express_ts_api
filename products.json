@@ -1,0 +1,338 @@
+[
+{
+"name": "Wireless Mouse",
+"price": 19.99,
+"description": "Ergonomic wireless mouse with adjustable DPI.",
+"stock": 120,
+"category": "Electronics"
+},
+{
+"name": "Mechanical Keyboard",
+"price": 79.99,
+"description": "Mechanical keyboard with blue switches and RGB lighting.",
+"stock": 60,
+"category": "Electronics"
+},
+{
+"name": "USB-C Charger",
+"price": 24.5,
+"description": "Fast-charging USB-C wall charger.",
+"stock": 200,
+"category": "Electronics"
+},
+{
+"name": "Noise Cancelling Headphones",
+"price": 129.99,
+"description": "Over-ear headphones with active noise cancellation.",
+"stock": 45,
+"category": "Electronics"
+},
+{
+"name": "Smart Watch",
+"price": 199.99,
+"description": "Smart watch with fitness tracking and heart rate monitor.",
+"stock": 35,
+"category": "Wearables"
+},
+{
+"name": "Bluetooth Speaker",
+"price": 49.99,
+"description": "Portable Bluetooth speaker with deep bass.",
+"stock": 90,
+"category": "Electronics"
+},
+{
+"name": "Laptop Stand",
+"price": 29.99,
+"description": "Adjustable aluminum laptop stand.",
+"stock": 110,
+"category": "Accessories"
+},
+{
+"name": "External Hard Drive 1TB",
+"price": 64.99,
+"description": "Portable 1TB external hard drive.",
+"stock": 70,
+"category": "Storage"
+},
+{
+"name": "Gaming Mouse Pad",
+"price": 14.99,
+"description": "Large gaming mouse pad with non-slip base.",
+"stock": 150,
+"category": "Gaming"
+},
+{
+"name": "Webcam HD",
+"price": 39.99,
+"description": "HD webcam suitable for streaming and video calls.",
+"stock": 85,
+"category": "Electronics"
+},
+{
+"name": "Office Chair",
+"price": 149.99,
+"description": "Ergonomic office chair with lumbar support.",
+"stock": 40,
+"category": "Furniture"
+},
+{
+"name": "Desk Lamp",
+"price": 22.99,
+"description": "LED desk lamp with adjustable brightness.",
+"stock": 130,
+"category": "Home"
+},
+{
+"name": "Notebook A5",
+"price": 4.99,
+"description": "A5 lined notebook with hardcover.",
+"stock": 300,
+"category": "Stationery"
+},
+{
+"name": "Ballpoint Pen Set",
+"price": 6.99,
+"description": "Set of 10 smooth-writing ballpoint pens.",
+"stock": 500,
+"category": "Stationery"
+},
+{
+"name": "Water Bottle",
+"price": 12.99,
+"description": "Stainless steel reusable water bottle.",
+"stock": 180,
+"category": "Lifestyle"
+},
+{
+"name": "Backpack",
+"price": 54.99,
+"description": "Durable backpack with laptop compartment.",
+"stock": 65,
+"category": "Accessories"
+},
+{
+"name": "Running Shoes",
+"price": 89.99,
+"description": "Lightweight running shoes for daily training.",
+"stock": 55,
+"category": "Footwear"
+},
+{
+"name": "Yoga Mat",
+"price": 24.99,
+"description": "Non-slip yoga mat with cushioning.",
+"stock": 95,
+"category": "Fitness"
+},
+{
+"name": "Dumbbell Set",
+"price": 59.99,
+"description": "Adjustable dumbbell set for home workouts.",
+"stock": 30,
+"category": "Fitness"
+},
+{
+"name": "Protein Shaker",
+"price": 9.99,
+"description": "Leak-proof protein shaker bottle.",
+"stock": 220,
+"category": "Fitness"
+},
+{
+"name": "Coffee Mug",
+"price": 8.99,
+"description": "Ceramic coffee mug, 350ml.",
+"stock": 250,
+"category": "Kitchen"
+},
+{
+"name": "Electric Kettle",
+"price": 34.99,
+"description": "Fast-boiling electric kettle with auto shut-off.",
+"stock": 75,
+"category": "Kitchen"
+},
+{
+"name": "Blender",
+"price": 69.99,
+"description": "High-speed blender for smoothies.",
+"stock": 50,
+"category": "Kitchen"
+},
+{
+"name": "Cutting Board",
+"price": 11.99,
+"description": "Bamboo cutting board for food prep.",
+"stock": 140,
+"category": "Kitchen"
+},
+{
+"name": "Chef Knife",
+"price": 44.99,
+"description": "Professional stainless steel chef knife.",
+"stock": 60,
+"category": "Kitchen"
+},
+{
+"name": "Sunglasses",
+"price": 29.99,
+"description": "UV-protected polarized sunglasses.",
+"stock": 100,
+"category": "Fashion"
+},
+{
+"name": "Wallet",
+"price": 19.99,
+"description": "Slim leather wallet with RFID protection.",
+"stock": 90,
+"category": "Fashion"
+},
+{
+"name": "Belt",
+"price": 17.99,
+"description": "Classic leather belt.",
+"stock": 110,
+"category": "Fashion"
+},
+{
+"name": "T-Shirt",
+"price": 14.99,
+"description": "Cotton t-shirt, regular fit.",
+"stock": 200,
+"category": "Clothing"
+},
+{
+"name": "Hoodie",
+"price": 39.99,
+"description": "Warm hoodie with front pocket.",
+"stock": 85,
+"category": "Clothing"
+},
+{
+"name": "Jeans",
+"price": 49.99,
+"description": "Slim-fit denim jeans.",
+"stock": 70,
+"category": "Clothing"
+},
+{
+"name": "Jacket",
+"price": 99.99,
+"description": "Water-resistant outdoor jacket.",
+"stock": 40,
+"category": "Clothing"
+},
+{
+"name": "Sneakers",
+"price": 74.99,
+"description": "Casual everyday sneakers.",
+"stock": 65,
+"category": "Footwear"
+},
+{
+"name": "Sandals",
+"price": 24.99,
+"description": "Comfortable summer sandals.",
+"stock": 90,
+"category": "Footwear"
+},
+{
+"name": "Book - Productivity",
+"price": 16.99,
+"description": "Book about productivity and time management.",
+"stock": 120,
+"category": "Books"
+},
+{
+"name": "Notebook Laptop",
+"price": 899.99,
+"description": "14-inch laptop for work and study.",
+"stock": 25,
+"category": "Computers"
+},
+{
+"name": "Tablet",
+"price": 329.99,
+"description": "10-inch tablet with high-resolution display.",
+"stock": 45,
+"category": "Computers"
+},
+{
+"name": "Smartphone",
+"price": 699.99,
+"description": "Latest-generation smartphone with OLED display.",
+"stock": 50,
+"category": "Mobile"
+},
+{
+"name": "Phone Case",
+"price": 15.99,
+"description": "Shockproof protective phone case.",
+"stock": 180,
+"category": "Mobile"
+},
+{
+"name": "Power Bank",
+"price": 29.99,
+"description": "10000mAh portable power bank.",
+"stock": 95,
+"category": "Mobile"
+},
+{
+"name": "Router",
+"price": 59.99,
+"description": "Dual-band Wi-Fi router.",
+"stock": 55,
+"category": "Networking"
+},
+{
+"name": "Ethernet Cable",
+"price": 7.99,
+"description": "5-meter high-speed Ethernet cable.",
+"stock": 300,
+"category": "Networking"
+},
+{
+"name": "Monitor 24-inch",
+"price": 179.99,
+"description": "24-inch Full HD computer monitor.",
+"stock": 40,
+"category": "Computers"
+},
+{
+"name": "Graphics Tablet",
+"price": 89.99,
+"description": "Drawing tablet for digital artists.",
+"stock": 35,
+"category": "Accessories"
+},
+{
+"name": "Microphone",
+"price": 69.99,
+"description": "USB condenser microphone for recording.",
+"stock": 60,
+"category": "Audio"
+},
+{
+"name": "Tripod",
+"price": 26.99,
+"description": "Adjustable tripod for cameras and phones.",
+"stock": 80,
+"category": "Photography"
+},
+{
+"name": "Camera Bag",
+"price": 45.99,
+"description": "Padded camera bag with compartments.",
+"stock": 50,
+"category": "Photography"
+},
+{
+"name": "LED Ring Light",
+"price": 32.99,
+"description": "LED ring light with adjustable color temperature.",
+"stock": 70,
+"category": "Photography"
+}
+]
