@@ -19,7 +19,7 @@ export const registerUserService = async (userData: RegisterUserTypeZ) => {
   const createdUser = await UserModel.create(newUser);
 
   return createdUser;
-}
+};
 
 export const loginUserService = async (email: string, password: string) => {
   const user = await UserModel.findOne({ email }).select("+password");
@@ -39,12 +39,12 @@ export const loginUserService = async (email: string, password: string) => {
 
   const expiresIn = (process.env.JWT_EXPIRES_IN ?? "1d") as SignOptions["expiresIn"];
 
-  const token = jwt.sign({ id: user._id, email: user.email }, jwtSecret, {
+  const token = jwt.sign({ id: user._id, email: user.email, role: user.role }, jwtSecret, {
     expiresIn,
   });
 
- // do not return password field
+  // do not return password field
   user.password = undefined;
 
   return { user, token };
-}
+};

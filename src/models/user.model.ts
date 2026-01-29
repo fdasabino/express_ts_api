@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
 import { z } from "zod";
 
+export type UserRole = "user" | "admin";
 export interface UserDocument {
   name: string;
   email: string;
   age: number;
   password?: string;
+  role?: UserRole;
 }
 
 export const createUserValidation = z.object({
@@ -29,7 +31,6 @@ export const loginUserValidation = z.object({
   }),
 });
 
-
 export type CreateUserTypeZ = z.infer<typeof createUserValidation>["body"];
 export type LoginUserTypeZ = z.infer<typeof loginUserValidation>["body"];
 export type RegisterUserTypeZ = z.infer<typeof registerUserValidation>["body"];
@@ -40,6 +41,7 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     age: { type: Number },
     password: { type: String, required: true, select: false },
+    role: { type: String, enum: ["user", "admin"], default: "user" },
   },
   { timestamps: true },
 );
