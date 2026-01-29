@@ -12,6 +12,9 @@ import { createProductValidation } from "../models/product.model";
 
 const router = Router();
 
+// Examples:
+// GET /api/products?page=1&limit=10&sort=-createdAt&category=books&fields=name,price
+// GET /api/products?page=2&limit=20&sort=price&search=notebook&minPrice=5&maxPrice=50
 router.get("/", getProducts);
 router.get("/:id", protect, restrictTo("admin"), getProductById);
 router.put("/:id", protect, restrictTo("admin"), updateProductById);
