@@ -9,9 +9,10 @@ export interface UserDocument {
 
 export const createUserValidation = z.object({
   body: z.object({
-    name: z.string("Please enter a valid name").min(2),
+    firstname: z.string("Please enter a valid name").min(2),
+    lastname: z.string("Please enter a valid last name").min(2),
     email: z.email("Please enter a valid email"),
-    age: z.number("Please enter a valid age").min(0),
+    password: z.string("Please enter a valid password").min(8),
   }),
 });
 

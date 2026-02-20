@@ -32,8 +32,9 @@ export const createUser = async (
   next: NextFunction,
 ) => {
   try {
-    const { name, age, email } = req.body;
-    const newUser = await createUserService(name, age, email);
+    const data = req.body;
+    console.log(data);
+    const newUser = await createUserService(data);
     res.status(201).json({ status: "User Created sucesfully", user: newUser });
   } catch (error) {
     next(error);
