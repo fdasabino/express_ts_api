@@ -1,16 +1,25 @@
+import { pool } from "../config/db";
 import { UserDocument, UserModel } from "../models/user.model";
 import { AppError } from "../utils/app.error";
 
+interface USER {
+  id: string;
+  email: string;
+}
+
 export const getAllUsersService = async () => {
-  const users = await UserModel.find();
-  if (users.length === 0) throw new AppError("No users found...", 404);
-  return users;
+  const results = await pool.query("SELECT * FROM users");
+  console.log(results.rows);
+  return results.rows;
 };
 
 export const getUserByIdService = async (id: string) => {
-  const user = await UserModel.findById(id);
-  if (!user) throw new AppError("User not found...", 404);
-  return user;
+  const query = "SELECT * FROM users WHERE id = $1";
+
+  const result = await pool.query<USER>(query, [id]);
+  if (!result) throw new AppError("User not found...", 404);
+
+  return result.rows[0] || null;
 };
 
 export const createUserService = async (name: string, age: number, email: string) => {

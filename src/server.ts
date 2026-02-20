@@ -2,6 +2,7 @@
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { createApp } from "./app";
+import { pool } from "./config/db";
 
 dotenv.config();
 
@@ -15,6 +16,10 @@ const startServer = async () => {
     console.info("✅ Connected to MONGO DB - Congrats!");
 
     const app = createApp();
+    pool
+      .connect()
+      .then(() => console.log("DB connected"))
+      .catch((e) => console.log(e));
 
     app.listen(PORT, () => {
       console.log(`🚀 Server running in ${process.env.NODE_ENV} mode on http://localhost:${PORT}`);
