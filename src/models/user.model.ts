@@ -1,10 +1,14 @@
-import mongoose from "mongoose";
 import { z } from "zod";
 
-export interface UserDocument {
-  name: string;
+export interface USER {
+  id: string;
+  firstname: string;
+  lastname: string;
   email: string;
-  age: number;
+  admin: boolean;
+  password: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export const createUserValidation = z.object({
@@ -17,14 +21,3 @@ export const createUserValidation = z.object({
 });
 
 export type CreateUserTypeZ = z.infer<typeof createUserValidation>["body"];
-
-const userSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    age: { type: Number },
-  },
-  { timestamps: true },
-);
-
-export const UserModel = mongoose.model<UserDocument>("User", userSchema);

@@ -1,24 +1,13 @@
 import bcrypt from "bcrypt";
 import { pool } from "../config/db";
+import { USER } from "../models/user.model";
 import { AppError } from "../utils/app.error";
-
-interface USER {
-  id: string;
-  firstname: string;
-  lastname: string;
-  email: string;
-  admin: boolean;
-  password: string;
-  created_at: string;
-  updated_at: string;
-}
 
 const fieldsToReturn = "id, firstname, lastname, email, admin, created_at, updated_at";
 
 export const getAllUsersService = async () => {
   // return users without password field
   const results = await pool.query<Partial<USER>>(`SELECT ${fieldsToReturn} FROM users`);
-  console.log(results);
 
   return results.rows;
 };
@@ -39,7 +28,6 @@ export const createUserService = async (data: Partial<USER>) => {
   const values = [data.firstname, data.lastname, data.email, encryptedPassword];
 
   const result = await pool.query<Partial<USER>>(query, values);
-  console.log(result);
   if (!result) throw new AppError("Failed to create user...", 500);
 
   return result.rows[0];
@@ -63,6 +51,15 @@ export const updateUserService = async (id: string, updateData: Partial<USER>) =
 
   const result = await pool.query<Partial<USER>>(query, [...values, id]);
   if (!result) throw new AppError("Failed to update user...", 500);
+
+  return result.rows[0];
+};
+
+export const deleteUserService = async (id: string) => {
+  const query = `DELETE FROM users WHERE id = $1 RETURNING ${fieldsToReturn}`;
+
+  const result = await pool.query<Partial<USER>>(query, [id]);
+  if (!result) throw new AppError("Failed to delete user...", 500);
 
   return result.rows[0];
 };
