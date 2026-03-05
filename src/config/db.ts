@@ -1,12 +1,12 @@
-import dotenv from "dotenv";
-import { Pool } from "pg";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "@prisma/client";
+import "dotenv/config";
 
-dotenv.config();
-
-export const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT || "5432"),
-  database: process.env.DB_NAME,
-  // password: process.env.DB_PASSWORD,
-});
+// instance of PrismaClient
+const connectionString = `${process.env.DATABASE_URL}`;
+const adapter = new PrismaPg({ connectionString });
+/**
+ * Shared Prisma Client instance using the PostgreSQL adapter.
+ * All DB access should go through this client.
+ */
+export const prisma = new PrismaClient({ adapter });
