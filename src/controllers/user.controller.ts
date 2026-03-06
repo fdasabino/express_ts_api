@@ -1,5 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
-import { getAllUsersService } from "../services/user.service";
+import { CreateUserTypeZ } from "../models/user.model";
+import { createUserService, getAllUsersService } from "../services/user.service";
 
 export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -15,6 +16,25 @@ export const getUsers = async (req: Request, res: Response, next: NextFunction) 
   }
 };
 
+export const createUser = async (
+  req: Request<{}, {}, CreateUserTypeZ>,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const data = req.body;
+    const newUser = await createUserService(data);
+
+    if (!newUser) {
+      return res.status(500).json({ status: "Failed to create user" });
+    }
+
+    res.status(201).json({ status: "User Created sucesfully", user: newUser });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // export const getUserById = async (req: Request, res: Response, next: NextFunction) => {
 //   try {
 //     const id = req.params.id as string;
@@ -25,25 +45,6 @@ export const getUsers = async (req: Request, res: Response, next: NextFunction) 
 //     }
 
 //     res.status(200).json(user);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// export const createUser = async (
-//   req: Request<{}, {}, CreateUserTypeZ>,
-//   res: Response,
-//   next: NextFunction,
-// ) => {
-//   try {
-//     const data = req.body;
-//     const newUser = await createUserService(data);
-
-//     if (!newUser) {
-//       return res.status(500).json({ status: "Failed to create user" });
-//     }
-
-//     res.status(201).json({ status: "User Created sucesfully", user: newUser });
 //   } catch (error) {
 //     next(error);
 //   }

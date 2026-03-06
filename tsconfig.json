@@ -1,15 +1,16 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    // File Layout
-    "target": "es2015",
-    "module": "NodeNext",
-    "rootDir": "src",
     "outDir": "dist",
-    "strict": true,
-    "esModuleInterop": true,
+    "rootDir": "src",
     "skipLibCheck": true,
-    "moduleResolution": "NodeNext"
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ES2023",
+    "strict": true,
+    "esModuleInterop": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
