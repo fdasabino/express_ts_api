@@ -37,3 +37,42 @@ export const createUserService = async (data: CreateUserTypeZ) => {
     },
   });
 };
+
+export const getUserByIdSevervice = async (id: number) => {
+  const user = await prisma.user.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      firstname: true,
+      lastname: true,
+      email: true,
+      created_at: true,
+    },
+  });
+
+  if (!user) {
+    throw new AppError("User not found", 404);
+  }
+
+  return user;
+};
+
+export const deleteUserService = async (id: number) => {
+  const userTobeDeleted = await prisma.user.findUnique({
+    where: { id },
+  });
+
+  if (!userTobeDeleted) {
+    throw new AppError("User not found", 404);
+  }
+
+  return await prisma.user.delete({
+    where: { id },
+    select: {
+      id: true,
+      firstname: true,
+      lastname: true,
+      email: true,
+    },
+  });
+};
