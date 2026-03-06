@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { prisma } from "../config/db";
-import { CreateUserTypeZ } from "../models/user.model";
+import { CreateUserTypeZ, UpdateUserTypeZ } from "../models/user.model";
 import { AppError } from "../utils/app.error";
 
 export const getAllUsersService = async () => {
@@ -68,6 +68,41 @@ export const deleteUserService = async (id: number) => {
 
   return await prisma.user.delete({
     where: { id },
+    select: {
+      id: true,
+      firstname: true,
+      lastname: true,
+      email: true,
+    },
+  });
+};
+
+export const updateUserService = async (id: number, data: UpdateUserTypeZ) => {
+  const userTobeUpdated = await prisma.user.findUnique({
+    where: { id },
+  });
+
+  if (!userTobeUpdated) {
+    throw new AppError("User not found", 404);
+  }
+
+  // encrypt password
+  if (data.password) {
+    data.password = await bcrypt.hash(data.password, 12);
+  } else {
+    data.password = userTobeUpdated.password;
+  }
+
+  const hashedPassword = await bcrypt.hash(data.password, 12);
+
+  return await prisma.user.update({
+    where: { id },
+    data: {
+      firstname: data.firstname,
+      lastname: data.lastname,
+      password: hashedPassword || userTobeUpdated.password,
+      email: data.email,
+    },
     select: {
       id: true,
       firstname: true,

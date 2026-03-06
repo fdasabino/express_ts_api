@@ -5,6 +5,7 @@ import {
   deleteUserService,
   getAllUsersService,
   getUserByIdSevervice,
+  updateUserService,
 } from "../services/user.service";
 
 export const createUserController = async (
@@ -63,6 +64,18 @@ export const deleteUserContoller = async (req: Request, res: Response, next: Nex
     res
       .status(200)
       .json({ status: `${user.firstname} ${user.lastname} deleted successfully`, user });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateUserController = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params;
+    const data = req.body;
+
+    const user = await updateUserService(Number(id), data);
+    res.status(200).json({ status: "User updated successfully", user });
   } catch (error) {
     next(error);
   }
